@@ -14,7 +14,8 @@ const credentials = {
 };
 
 const sessionClient = new dialogflow.SessionsClient({ projectId, credentials });
-const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+const sessionPath = sessionClient.sessionPath(config.googleProjectID, config.dialogFlowSessionID);
+
 
 
 module.exports = {
@@ -25,7 +26,7 @@ module.exports = {
             queryInput: {
                 text: {
                     text: text,
-                    languageCode: languageCode,
+                    languageCode: config.dialogFlowSessionLanguageCode,
                 },
             },
             queryParams: {
@@ -51,7 +52,8 @@ module.exports = {
                 event: {
                     name: event,
                     parameters: structjson.jsonToStructProto(parameters),
-                    languageCode: languageCode,
+                    languageCode: config.dialogFlowSessionLanguageCode,
+
                 },
             }
         };
