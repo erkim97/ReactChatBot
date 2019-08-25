@@ -14,8 +14,7 @@ const credentials = {
 };
 
 const sessionClient = new dialogflow.SessionsClient({ projectId, credentials });
-const sessionPath = sessionClient.sessionPath(config.googleProjectID, config.dialogFlowSessionID);
-
+const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 
 module.exports = {
@@ -26,7 +25,7 @@ module.exports = {
             queryInput: {
                 text: {
                     text: text,
-                    languageCode: config.dialogFlowSessionLanguageCode,
+                    languageCode: languageCode,
                 },
             },
             queryParams: {
@@ -51,9 +50,8 @@ module.exports = {
             queryInput: {
                 event: {
                     name: event,
-                    parameters: structjson.jsonToStructProto(parameters),
-                    languageCode: config.dialogFlowSessionLanguageCode,
-
+                    parameters: structjson.jsonToStructProto(parameters), //Dialogflow's v2 API uses gRPC. You'll need a jsonToStructProto method to convert your JavaScript object to a proto struct.
+                    languageCode: languageCode,
                 },
             }
         };
