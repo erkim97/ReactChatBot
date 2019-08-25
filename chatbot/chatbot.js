@@ -1,18 +1,21 @@
 'use strict';
 const dialogflow = require('dialogflow');
-const structjsnon = require('./structjson');
+const structjson = require('./structjson.js');
 const config = require('../config/keys');
 
-const projectID = config.googleProjectID;
+const projectId = config.googleProjectID;
+const sessionId = config.dialogFlowSessionID;
+const languageCode = config.dialogFlowSessionLanguageCode;
+
 const credentials = {
     client_email: config.googleClientEmail,
-    private_key: config.googlePrivateKey
+    private_key:
+        config.googlePrivateKey,
 };
 
+const sessionClient = new dialogflow.SessionsClient({ projectId, credentials });
+const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-const sessionClient = new dialogflow.SessionsClient();
-
-const sessionPath = sessionClient.sessionPath({ projectID, credentials });
 
 module.exports = {
     textQuery: async function (text, parameters = {}) {
@@ -22,7 +25,7 @@ module.exports = {
             queryInput: {
                 text: {
                     text: text,
-                    languageCode: config.dialogFlowSessionLanguageCode,
+                    languageCode: languageCode,
                 },
             },
             queryParams: {
@@ -35,8 +38,10 @@ module.exports = {
         let responses = await sessionClient.detectIntent(request);
         responses = await self.handleAction(responses);
         return responses;
-    },
 
+
+
+    },
 
     eventQuery: async function (event, parameters = {}) {
         let self = module.exports;
@@ -45,8 +50,8 @@ module.exports = {
             queryInput: {
                 event: {
                     name: event,
-                    parameters: structjsnon.jsonToStructProto(parameters),
-                    languageCode: config.dialogFlowSessionLanguageCode,
+                    parameters: structjson.jsonToStructProto(parameters),
+                    languageCode: languageCode,
                 },
             }
         };
@@ -54,8 +59,8 @@ module.exports = {
         let responses = await sessionClient.detectIntent(request);
         responses = await self.handleAction(responses);
         return responses;
-    },
 
+    },
 
 
     handleAction: function (responses) {
