@@ -12,7 +12,6 @@ require('./models/Registration');
 app.use(bodyParser.json());
 
 require('./routes/dialogFlowRoutes')(app);
-//require('./routes/fulfillmentRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
    // js and css files

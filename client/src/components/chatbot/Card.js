@@ -8,7 +8,7 @@ const Card = (props) => {
                     <img alt={props.payload.fields.header.stringValue} src={props.payload.fields.image.stringValue} />
                     <span className="card-title">{props.payload.fields.header.stringValue}</span>
                 </div>
-                <div className="card-content">
+                <div className="card-content" style={{ width: 240 }}>
                     {props.payload.fields.description.stringValue}
                     <p> <a href="/">{props.payload.fields.price.stringValue}</a></p>
                 </div>

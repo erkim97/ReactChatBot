@@ -17,13 +17,13 @@ class Chatbot extends Component {
 
     constructor(props) {
         super(props);
-        // This binding is necessary to make `this` work in the callback
+        // Need a binding to make 'this' work in the callback
         this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
         this._handleQuickReplyPayload = this._handleQuickReplyPayload.bind(this);
 
         this.state = {
             messages: [],
-            shopWelcomeSent: false
+            personWelcomeSent: false
         };
         if (cookies.get('userID') === undefined) {
             cookies.set('userID', uuid(), { path: '/' });
@@ -91,15 +91,15 @@ class Chatbot extends Component {
     componentDidMount() {
         this.df_event_query('Welcome');
 
-        if (window.location.pathname === '/shop' && !this.state.shopWelcomeSent) {
-            this.df_event_query('WELCOME_SHOP');
-            this.setState({ shopWelcomeSent: true });
+        if (window.location.pathname === '/ask' && !this.state.shopWelcomeSent) {
+            this.df_event_query('WELCOME_PERSON');
+            this.setState({ personWelcomeSent: true });
         }
 
         this.props.history.listen(() => {
-            if (this.props.history.location.pathname === '/shop' && !this.state.shopWelcomeSent) {
-                this.df_event_query('WELCOME_SHOP');
-                this.setState({ shopWelcomeSent: true });
+            if (this.props.history.location.pathname === '/ask' && !this.state.shopWelcomeSent) {
+                this.df_event_query('WELCOME_PERSON');
+                this.setState({ personWelcomeSent: true });
             }
         });
     }
@@ -130,8 +130,7 @@ class Chatbot extends Component {
 
         if (message.msg && message.msg.text && message.msg.text.text) {
             return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />;
-        } else if (message.msg && message.msg.payload.fields.cards) { //message.msg.payload.fields.cards.listValue.values
-
+        } else if (message.msg && message.msg.payload && message.msg.payload.fields.cards) {
             return <div key={i}>
                 <div className="card-panel grey lighten-5 z-depth-1">
                     <div style={{ overflow: 'hidden' }}>
@@ -139,7 +138,7 @@ class Chatbot extends Component {
                             <a href="/" className="btn-floating btn-large waves-effect waves-light red">{message.speaks}</a>
                         </div>
                         <div style={{ overflow: 'auto', overflowY: 'scroll' }}>
-                            <div style={{ height: 300, width: message.msg.payload.fields.cards.listValue.values.length * 270 }}>
+                            <div style={{ height: 500, width: message.msg.payload.fields.cards.listValue.values.length * 270 }}>
                                 {this.renderCards(message.msg.payload.fields.cards.listValue.values)}
                             </div>
                         </div>

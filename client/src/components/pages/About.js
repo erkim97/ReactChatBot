@@ -2,7 +2,8 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div>About us!</div>
+        <h2>About the Chatbot!</h2>
+
     )
 }
 

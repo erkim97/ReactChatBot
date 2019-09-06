@@ -2,8 +2,8 @@ import React from 'react';
 
 const Landing = () => {
     return (
-        <div style={{ textAlign: 'center' }}><h1>Selling you great stuff</h1>
-            with the help of the chatbot</div>
+        <div style={{ textAlign: 'center' }}><h1>Ask for jokes or questions!</h1>
+            my responses, given to you, with the help of the chatbot</div>
     )
 }
 
