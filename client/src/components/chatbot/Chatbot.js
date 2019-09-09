@@ -186,7 +186,7 @@ class Chatbot extends Component {
     render() {
         return (
             <div style={{ minHeight: 500, maxHeight: 500, width: 400, position: 'absolute', bottom: 0, right: 0, border: '1px solid lightgray' }}>
-                <nav style={{ backgroundColor: cornflowerblue }}>
+                <nav>
                     <div className="nav-wrapper">
                         <a href="/" className="brand-logo">ChatBot</a>
                     </div>
