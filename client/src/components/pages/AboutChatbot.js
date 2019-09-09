@@ -2,14 +2,22 @@ import React from 'react';
 
 const AboutChatbot = () => {
     return (
-        <div>
-            -Ask for a joke
-            -Any general small talk questions
-            -Birthday
-            -Recommendations on food (Only 3 options thus far- Ramen, Sushi, General restaurants)
-            -The meaning of life
-            -Can send your information to the mongoDB to recommend more ramen places(WIP)
-        </div>
+        <ul style={{ padding: 10, fontSize: 20 }}>
+            <li><b>Tecnologies Used!</b></li>
+            <li>-React.js for frontend</li>
+            <li>-HTML with Materialize.css UI</li>
+            <li>-Node.js for the backend for the app</li>
+            <li>-Concurrently to run both frontend and backend servers during startup of app</li>
+            <li>-Dialogflow API which communicates with backend</li>
+            <li>-Proxy middleware to solve problem of backend url being hardcoded to every request to the backend
+         , this URL needs to change, when the URL of the backend app changes like at deployment </li>
+            <li>-Javascript functions for components of the pages</li>
+            <li>-react-router-dom npm package to reload just a component, not the whole page</li>
+            <li>-Axios npm library for HTTP requests, for two methods - one text queries and event queries</li>
+            <li>-Deployment to Heroku with Heroku CLI commands</li>
+            <li>-Create unique user sessions with usage of cookies library</li>
+            <li>-Event based recommendations input query for users, sending and storing to mongoDB account using mongoose</li>
+        </ul>
     )
 };
 
