@@ -6,7 +6,7 @@ const AboutChatbot = () => {
             <h2>Tecnologies Used!</h2>
             <ul style={{ padding: 10, fontSize: 20 }}>
                 <li>-React.js for frontend</li>
-                <li>-HTML with Materialize.css UI</li>
+                <li>-JSX with Materialize.css UI</li>
                 <li>-Node.js for the backend for the app</li>
                 <li>-concurrently npm package to run both frontend and backend servers during startup of app</li>
                 <li>-Dialogflow API which communicates with backend</li>
