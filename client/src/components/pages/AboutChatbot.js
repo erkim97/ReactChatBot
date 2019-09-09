@@ -1,6 +1,6 @@
 import React from 'react';
 
-const List = () => {
+const AboutChatbot = () => {
     return (
         <div>
             -Ask for a joke
@@ -13,4 +13,4 @@ const List = () => {
     )
 };
 
-export default List;
+export default AboutChatbot;

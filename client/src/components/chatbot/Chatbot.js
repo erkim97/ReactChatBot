@@ -80,7 +80,7 @@ class Chatbot extends Component {
                 speaks: 'bot',
                 msg: {
                     text: {
-                        text: "I'm having troubles. I need to terminate. will be back later"
+                        text: "I'm having troubles. I need to terminate. Will be back later"
                     }
                 }
             }
@@ -88,6 +88,8 @@ class Chatbot extends Component {
         }
 
     };
+
+    //What to ask the chatbot? page, gives shop default state message
     componentDidMount() {
         this.df_event_query('Welcome');
 
@@ -109,6 +111,7 @@ class Chatbot extends Component {
         this.talkInput.focus();
     }
 
+    //SHOW_RECOMMENDATIONS event trigger recommend_yes follow up intent
     _handleQuickReplyPayload(event, payload, text) {
         event.preventDefault();
         event.stopPropagation();
@@ -122,6 +125,7 @@ class Chatbot extends Component {
         }
     }
 
+    //Listings of restaurants on a card, dialogflow diagnostic info
     renderCards(cards) {
         return cards.map((card, i) => <Card key={i} payload={card.structValue} />);
     }
@@ -170,6 +174,7 @@ class Chatbot extends Component {
         }
     }
 
+    //Handle enter input key press text value
     _handleInputKeyPress(e) {
         if (e.key === 'Enter') {
             this.df_text_query(e.target.value);
@@ -177,10 +182,11 @@ class Chatbot extends Component {
         }
     }
 
+    //Navbar and Chatbot position, size, color, css
     render() {
         return (
             <div style={{ minHeight: 500, maxHeight: 500, width: 400, position: 'absolute', bottom: 0, right: 0, border: '1px solid lightgray' }}>
-                <nav>
+                <nav style={{ backgroundColor: cornflowerblue }}>
                     <div className="nav-wrapper">
                         <a href="/" className="brand-logo">ChatBot</a>
                     </div>
@@ -194,10 +200,10 @@ class Chatbot extends Component {
                     </div>
                 </div>
                 <div className=" col s12" >
-                    <input style={{ margin: 0, paddingLeft: '1%', paddingRight: '1%', width: '98%' }} ref={(input) => { this.talkInput = input; }} placeholder="type a message:" onKeyPress={this._handleInputKeyPress} id="user_says" type="text" />
+                    <input style={{ margin: 0 }} ref={(input) => { this.talkInput = input; }} placeholder="type a message:" onKeyPress={this._handleInputKeyPress} id="user_says" type="text" />
                 </div>
 
-            </div>
+            </div >
         );
 
     }

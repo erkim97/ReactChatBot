@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const QuickReply = (props) => {
     if (props.reply.structValue.fields.payload) {
         return (

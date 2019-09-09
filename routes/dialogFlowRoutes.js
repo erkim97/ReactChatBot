@@ -5,6 +5,7 @@ const chatbot = require('../chatbot/chatbot');
 
 module.exports = app => {
 
+    // testing the get statement
     // app.get('/', (req, res) => {
     //     res.send({'hello': 'world'})
     // });
